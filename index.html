@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Amorchito</title>
+    <title>Para mi Amor</title>
     <style>
-        /* Importamos una fuente similar a Rocklyn/Slab Serif */
+        /* Fuente elegante estilo Slab Serif (similar a Rocklyn) */
         @import url('https://fonts.googleapis.com/css2?family=Arvo:700&display=swap');
 
         body, html {
@@ -15,7 +15,7 @@
             height: 100%;
             overflow: hidden;
             background-color: white;
-            font-family: 'Arvo', serif; /* Lo más cercano a Rocklyn disponible en web */
+            font-family: 'Arvo', serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,46 +29,47 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
 
         .heart-bg {
             position: absolute;
-            color: #ff4d4d;
-            animation: float 4s infinite ease-in-out;
-            opacity: 0.7;
+            color: #ff0000; /* Rojo vibrante */
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.8;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(20deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
         }
 
-        /* Pantalla Inicial */
+        /* Pantalla de Inicio */
         #main-container {
             z-index: 10;
             text-align: center;
             cursor: pointer;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.9s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
         .heart-pink {
-            font-size: 160px;
-            color: #ffb6c1;
+            font-size: 180px;
+            color: #ffb6c1; /* Rosado grande */
             display: block;
-            margin-bottom: 15px;
-            animation: pulse-ritmo 0.6s infinite alternate; /* Latido con ritmo */
-            filter: drop-shadow(0 5px 15px rgba(255, 182, 193, 0.6));
+            margin-bottom: 10px;
+            animation: pulse-suave 1.2s infinite alternate;
+            filter: drop-shadow(0 0 15px rgba(255, 182, 193, 0.8));
         }
 
         .text-click {
-            font-size: 28px;
+            font-size: 30px;
             color: #ff69b4;
             font-weight: bold;
-            letter-spacing: 2px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        /* Animación de Puerta */
+        /* Animación de Puerta Abierta */
         .door-open {
             transform: scale(0) rotateY(180deg);
             opacity: 0;
@@ -88,23 +89,24 @@
             background-color: white;
             z-index: 5;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
         }
 
         .message-text {
-            font-size: 2.5rem;
-            color: #d32f2f;
-            max-width: 85%;
-            line-height: 1.3;
-            animation: appear 1s ease-out;
+            font-size: 2.8rem;
+            color: #000000; /* LETRA NEGRA */
+            max-width: 90%;
+            line-height: 1.4;
+            animation: zoomIn 1.2s ease-out;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        @keyframes pulse-ritmo {
-            to { transform: scale(1.15); }
+        @keyframes pulse-suave {
+            to { transform: scale(1.1); }
         }
 
-        @keyframes appear {
-            from { transform: scale(0.5); opacity: 0; }
+        @keyframes zoomIn {
+            from { transform: scale(0.2); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
     </style>
@@ -113,7 +115,7 @@
 
     <div class="background-hearts" id="heartBox"></div>
 
-    <div id="main-container" onclick="openSurprise()">
+    <div id="main-container" onclick="iniciarSorpresa()">
         <div class="heart-pink">♥️</div>
         <div class="text-click">PARA TI</div>
     </div>
@@ -122,44 +124,45 @@
         <h1 class="message-text">TE AMO MUCHO MI AMOR Y ERES MUY ESPECIAL PARA MI AMORCHITO MIO ♥️🐥</h1>
     </div>
 
-    <audio id="audioRitmo" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    <audio id="musicaRomantica" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Crear lluvia de corazones rojos
+        // Lluvia de corazones rojos constante
         const heartBox = document.getElementById('heartBox');
-        const heartIcons = ['❤️', '♥️', '❣'];
         
-        for (let i = 0; i < 60; i++) {
-            const heart = document.createElement('div');
-            heart.className = 'heart-bg';
-            heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = Math.random() * 100 + 'vh';
-            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-            heart.style.animationDelay = (Math.random() * 3) + 's';
-            heartBox.appendChild(heart);
+        function crearCorazones() {
+            for (let i = 0; i < 65; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-bg';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heartBox.appendChild(heart);
+            }
         }
+        crearCorazones();
 
-        function openSurprise() {
+        function iniciarSorpresa() {
             const container = document.getElementById('main-container');
             const message = document.getElementById('secret-message');
-            const audio = document.getElementById('audioRitmo');
+            const audio = document.getElementById('musicaRomantica');
 
-            // Reproducir el ritmo
-            audio.play().catch(e => console.log("Clic necesario para audio"));
+            // Iniciar el ritmo romántico
+            audio.play().catch(e => console.log("Audio activo"));
 
-            // Efecto de puerta abierta
+            // Efecto de puerta
             container.classList.add('door-open');
 
             setTimeout(() => {
                 container.style.display = 'none';
                 message.style.display = 'flex';
-                // El fondo de corazones se mantiene en el mensaje
+                // Asegurar que los corazones rojos sigan ahí
                 message.appendChild(heartBox);
-            }, 700);
+            }, 800);
         }
     </script>
 </body>
-</html>
